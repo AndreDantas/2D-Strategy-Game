@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Util;
-
+[System.Serializable]
 public abstract class Node
 {
     /// <summary>
@@ -21,17 +21,7 @@ public abstract class Node
 
     public override string ToString()
     {
-        return "Position: " + pos.ToString();
+        return "Node " + pos.ToString();
     }
 
-    public override bool Equals(object obj)
-    {
-        return obj is Node node &&
-               EqualityComparer<Position>.Default.Equals(pos, node.pos);
-    }
-
-    public override int GetHashCode()
-    {
-        return 991532785 + EqualityComparer<Position>.Default.GetHashCode(pos);
-    }
 }
