@@ -1,7 +1,8 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
-namespace Util
+namespace Model.Util
 {
+    [System.Serializable]
     public struct Position
     {
         public Position(int x, int y)
@@ -13,11 +14,8 @@ namespace Util
             this.y = y;
         }
 
-
         [SerializeField, HideInInspector] private int _x;
-
         [SerializeField, HideInInspector] private int _y;
-
 
         /// <summary>
         /// X coordinate.

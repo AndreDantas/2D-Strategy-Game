@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
-using Sirenix.OdinInspector;
-using Util;
+using Model.Util;
+using Core.Util;
 [System.Serializable]
 public class GameMap : BaseMap
 {
 
-    [SerializeField, HideInInspector] private MapNode[,] nodes = new MapNode[0, 0];
-    public MapNode[,] Nodes { get => nodes; private set => nodes = value; }
+    [SerializeField, HideInInspector] private MapNode[,] _nodes = new MapNode[0, 0];
+    public MapNode[,] nodes { get => _nodes; private set => _nodes = value; }
 
     public GameMap()
     {
@@ -15,21 +15,29 @@ public class GameMap : BaseMap
 
     public GameMap(int width, int height) : base(width, height)
     {
-        nodes = new MapNode[width, height];
-        initNodes();
+        InitNodes();
     }
 
-    protected virtual void initNodes()
+    protected virtual void InitNodes()
     {
-        if (nodes == null)
-            return;
-        for (int i = 0; i < nodes.GetLength(0); i++)
+        _nodes = new MapNode[width, height];
+
+        for (int i = 0; i < _nodes.GetLength(0); i++)
         {
-            for (int j = 0; j < nodes.GetLength(1); j++)
+            for (int j = 0; j < _nodes.GetLength(1); j++)
             {
-                nodes[i, j] = new MapNode(new Position(i, j));
+                _nodes[i, j] = new MapNode(new Position(i, j));
             }
         }
+    }
+
+    public MapNode GetNode(Position pos)
+    {
+        if (!_nodes?.ValidCoordinates(pos.x, pos.y) ?? true)
+            return null;
+
+        return _nodes[pos.x, pos.y];
+
     }
 
 }

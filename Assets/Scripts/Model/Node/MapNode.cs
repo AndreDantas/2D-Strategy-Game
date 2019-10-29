@@ -1,8 +1,6 @@
-﻿using System.Collections;
-
-using UnityEngine;
+﻿using UnityEngine;
 using Sirenix.OdinInspector;
-using Util;
+using Model.Util;
 
 [System.Serializable]
 public class MapNode : Node
@@ -14,10 +12,10 @@ public class MapNode : Node
     /// </summary>
     public bool walkable = false;
 
-    private const float MIN_WALK_COST = 0f;
-    private const float MAX_WALK_COST = 999f;
+    private const int MIN_WALK_COST = 0;
+    private const int MAX_WALK_COST = 99;
 
-    [SerializeField, HideInInspector] private float _walkCost = 0f;
+    [SerializeField, HideInInspector] private int _walkCost = 0;
 
     public MapNode()
     {
@@ -27,7 +25,7 @@ public class MapNode : Node
     {
     }
 
-    public MapNode(Position pos, string terrainType, bool walkable, float walkCost) : base(pos)
+    public MapNode(Position pos, string terrainType, bool walkable, int walkCost) : base(pos)
     {
         this.terrainType = terrainType;
         this.walkable = walkable;
@@ -38,11 +36,11 @@ public class MapNode : Node
     /// The walk cost of the node.
     /// </summary>
     /// <value></value>
-    [ShowInInspector] public float walkCost { get => _walkCost; set => _walkCost = Mathf.Clamp(value, MIN_WALK_COST, MAX_WALK_COST); }
+    [ShowInInspector] public int walkCost { get => _walkCost; set => _walkCost = Mathf.Clamp(value, MIN_WALK_COST, MAX_WALK_COST); }
 
 
     public override string ToString()
     {
-        return string.Format(base.ToString() + "\nTerrain type: %s\nWalkable: %b\nWalk cost: %f", terrainType, walkable, walkCost);
+        return string.Format(base.ToString() + "\nTerrain type: %s\nWalkable: %b\nWalk cost: %d", terrainType, walkable, walkCost);
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using Util;
+using Model.Util;
 [System.Serializable]
 public abstract class Node
 {
