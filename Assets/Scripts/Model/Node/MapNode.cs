@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using Sirenix.OdinInspector;
-using Model.Util;
+using UtilityLibrary.Classes;
 
 [System.Serializable]
 public class MapNode : Node

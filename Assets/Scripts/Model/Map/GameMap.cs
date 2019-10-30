@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
-using Model.Util;
-using Core.Util;
+using System.Collections.Generic;
+using UtilityLibrary.Classes;
+using UtilityLibrary;
 [System.Serializable]
 public class GameMap : BaseMap
 {
@@ -38,6 +39,20 @@ public class GameMap : BaseMap
 
         return _nodes[pos.x, pos.y];
 
+    }
+
+    public virtual List<MapNode> getNodeNeighbors(Position pos)
+    {
+        var result = new List<MapNode>();
+
+        if (_nodes?.ValidCoordinates(pos.x, pos.y) ?? false)
+            for (int i = -1; i < 2; i += 2)
+            {
+                result.AddNotNull(GetNode(new Position(pos.x + i, pos.y)));
+                result.AddNotNull(GetNode(new Position(pos.x, pos.y + i)));
+            }
+
+        return result;
     }
 
 }
