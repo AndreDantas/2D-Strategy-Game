@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
-public class Djikstra
+public static class Pathfinding
 {
 
 

@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UtilityLibrary.Classes;
@@ -39,6 +42,22 @@ public abstract class Skill : ScriptableObject
         caster = character;
     }
 
-    public abstract List<MapNode> getAffectedTiles(GameMap map, Position targetNode);
+    public abstract List<MapNode> getAffectedTiles(GameMap map, Position origin, Position target);
+
+#if UNITY_EDITOR
+    [TableMatrix(DrawElementMethod = "DrawEffect")]
+    [ShowInInspector]
+    public virtual bool[,] effectDrawing
+    {
+        get;
+    }
+
+    protected static bool DrawEffect(Rect rect, bool value)
+    {
+        EditorGUI.DrawRect(rect,
+        value ? new Color(0.1f, 0.8f, 0.2f, 0.5f) : new Color(0, 0, 0, 0.5f));
+        return value;
+    }
+#endif
 
 }

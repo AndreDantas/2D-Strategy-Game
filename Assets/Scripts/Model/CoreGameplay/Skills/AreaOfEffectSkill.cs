@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UtilityLibrary;
 using UtilityLibrary.Classes;
@@ -13,7 +12,25 @@ public class AreaOfEffectSkill : Skill
 
     [ShowInInspector] public int effectRadius { get => _effectRadius; set => _effectRadius = Mathf.Max(value, 0); }
 
-    public override List<MapNode> getAffectedTiles(GameMap map, Position targetPos)
+#if UNITY_EDITOR
+    [TableMatrix(DrawElementMethod = "DrawEffect", SquareCells = true)]
+    [ShowInInspector]
+    public override bool[,] effectDrawing
+    {
+        get
+        {
+            int size = effectRadius <= 1 ? 5 : effectRadius * 2 + 3;
+            var d = new bool[size, size];
+            var pos = new Position((size - 1) / 2, (size - 1) / 2);
+            foreach (var node in getAffectedTiles(new GameMap(size, size), pos, pos))
+            {
+                d[node.pos.x, node.pos.y] = true;
+            }
+            return d;
+        }
+    }
+#endif
+    public override List<MapNode> getAffectedTiles(GameMap map, Position origin, Position target)
     {
         if (map == null)
             return null;
@@ -22,7 +39,7 @@ public class AreaOfEffectSkill : Skill
         var checkLater = new List<MapNode>();
         var result = new List<MapNode>();
 
-        check.AddNotNull(map.GetNode(targetPos));
+        check.AddNotNull(map.GetNode(target));
 
         for (int i = 0; i <= effectRadius; i++)
         {

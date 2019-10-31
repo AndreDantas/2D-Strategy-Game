@@ -16,6 +16,6 @@ MonoBehaviour:
   description: 
   type: 1
   _effectPower: 10
-  _range: 5
+  _range: 4
   possibleTargets: 3
   _effectRadius: 2
