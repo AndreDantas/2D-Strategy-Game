@@ -5,6 +5,12 @@ public class MapView : MonoBehaviour
 
     public GameMap map = new GameMap(5, 5);
 
+    private void Start()
+    {
+        var map = new GameMap(7, 7);
+
+    }
+
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {

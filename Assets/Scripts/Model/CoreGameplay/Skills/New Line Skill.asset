@@ -9,13 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89980f2cce7dcbd4b94ad911c4858d93, type: 3}
-  m_Name: Fireball
+  m_Script: {fileID: 11500000, guid: dba18010c8d003745a7b0f36e0984c54, type: 3}
+  m_Name: New Line Skill
   m_EditorClassIdentifier: 
-  name: Fireball
+  name: 
   description: 
-  type: 1
-  _effectPower: 10
-  _range: 4
-  possibleTargets: 3
-  _effectRadius: 2
+  type: 0
+  _effectPower: 2
+  _range: 0
+  possibleTargets: 2
+  requireTarget: 1
+  _lineReach: 3
+  passThroughBlock: 0

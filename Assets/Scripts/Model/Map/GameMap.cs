@@ -11,7 +11,7 @@ public class GameMap : BaseMap
 
     public GameMap()
     {
-
+        InitNodes();
     }
 
     public GameMap(int width, int height) : base(width, height)
@@ -34,10 +34,23 @@ public class GameMap : BaseMap
 
     public MapNode GetNode(Position pos)
     {
-        if (!_nodes?.ValidCoordinates(pos.x, pos.y) ?? true)
+        if (!nodes?.ValidCoordinates(pos.x, pos.y) ?? true)
             return null;
 
-        return _nodes[pos.x, pos.y];
+        return nodes[pos.x, pos.y];
+
+    }
+    public List<MapNode> GetNodes(List<Position> positions)
+    {
+        if (positions == null)
+            return null;
+        var result = new List<MapNode>();
+        for (int i = 0; i < positions.Count; i++)
+        {
+            result.AddNotNull(GetNode(positions[i]));
+        }
+
+        return result;
 
     }
 
@@ -45,7 +58,7 @@ public class GameMap : BaseMap
     {
         var result = new List<MapNode>();
 
-        if (_nodes?.ValidCoordinates(pos.x, pos.y) ?? false)
+        if (nodes?.ValidCoordinates(pos.x, pos.y) ?? false)
             for (int i = -1; i < 2; i += 2)
             {
                 result.AddNotNull(GetNode(new Position(pos.x + i, pos.y)));
@@ -53,6 +66,11 @@ public class GameMap : BaseMap
             }
 
         return result;
+    }
+
+    public static int GetDistance(Position a, Position b)
+    {
+        return Mathf.Abs(b.x - a.x) + Mathf.Abs(b.y - a.y);
     }
 
 }

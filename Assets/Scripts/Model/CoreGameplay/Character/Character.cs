@@ -14,14 +14,16 @@ public class Character : ScriptableObject
     public new string name = "";
 
     public Level level;
-    [SerializeField, HideInInspector] private Stat _health;
-    [SerializeField, HideInInspector] private Stat _attack;
-    [SerializeField, HideInInspector] private Stat _magic;
-    [SerializeField, HideInInspector] private Stat _defense;
-    [SerializeField, HideInInspector] private Stat _stamina;
+    [SerializeField, HideInInspector] private Stat _maxHealth = new Stat(100);
+    [SerializeField, HideInInspector] private Stat _health = new Stat(10);
+    [SerializeField, HideInInspector] private Stat _attack = new Stat(10);
+    [SerializeField, HideInInspector] private Stat _magic = new Stat(10);
+    [SerializeField, HideInInspector] private Stat _defense = new Stat(10);
+    [SerializeField, HideInInspector] private Stat _stamina = new Stat(10);
 
 
-    [ShowInInspector] public Stat health { get => _health; set => _health = new Stat(value.BaseValue, 0, MAX_HEALTH); }
+    [ShowInInspector] public Stat maxHealth { get => _maxHealth; set => _maxHealth = new Stat(value.BaseValue, 0, MAX_HEALTH); }
+    [ShowInInspector] public Stat health { get => _health; set => _health = new Stat(value.BaseValue, 0, maxHealth.Value); }
     [ShowInInspector] public Stat attack { get => _attack; set => _attack = new Stat(value.BaseValue, 0, MAX_ATTACK); }
     [ShowInInspector] public Stat magic { get => _magic; set => _magic = new Stat(value.BaseValue, 0, MAX_MAGIC); }
     [ShowInInspector] public Stat defense { get => _defense; set => _defense = new Stat(value.BaseValue, 0, MAX_DEFENSE); }

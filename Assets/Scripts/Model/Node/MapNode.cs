@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
+using System;
 using Sirenix.OdinInspector;
 using UtilityLibrary.Classes;
+using System.Collections.Generic;
 
 [System.Serializable]
-public class MapNode : Node
+public class MapNode : Node, IEquatable<MapNode>
 {
     public string terrainType = "";
 
     /// <summary>
-    /// If the node is walkable.
+    /// If the node is blocked.
     /// </summary>
-    public bool walkable = false;
+    public bool blocked = false;
 
     private const int MIN_WALK_COST = 0;
     private const int MAX_WALK_COST = 99;
@@ -25,10 +27,10 @@ public class MapNode : Node
     {
     }
 
-    public MapNode(Position pos, string terrainType, bool walkable, int walkCost) : base(pos)
+    public MapNode(Position pos, string terrainType, bool blocked, int walkCost) : base(pos)
     {
         this.terrainType = terrainType;
-        this.walkable = walkable;
+        this.blocked = blocked;
         this.walkCost = walkCost;
     }
 
@@ -41,6 +43,11 @@ public class MapNode : Node
 
     public override string ToString()
     {
-        return string.Format(base.ToString() + "\nTerrain type: %s\nWalkable: %b\nWalk cost: %d", terrainType, walkable, walkCost);
+        return base.ToString() + "\nTerrain type: " + terrainType + "\nBlocked: " + blocked + "\nWalk cost: " + walkCost;
+    }
+
+    public bool Equals(MapNode other)
+    {
+        return this.pos == other.pos;
     }
 }
