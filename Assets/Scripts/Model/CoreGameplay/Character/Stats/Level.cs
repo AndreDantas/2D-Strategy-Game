@@ -3,6 +3,10 @@ using UnityEngine;
 namespace Stats
 {
     [System.Serializable]
+    [HideReferenceObjectPicker]
+    [InlineProperty]
+    [PropertySpace(10)]
+    [HideLabel, Title("Level")]
     public class Level
     {
         public const int MAX_LEVEL = 99;
@@ -28,7 +32,7 @@ namespace Stats
             }
         }
 
-        public GrowthFormula growthFormula = new ExponentialGrowth();
+        [HideInInspector] public GrowthFormula growthFormula = new ExponentialGrowth();
 
         public Level() : this(1, new ExponentialGrowth())
         {

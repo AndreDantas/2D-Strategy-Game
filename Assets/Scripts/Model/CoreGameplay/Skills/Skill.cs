@@ -64,9 +64,10 @@ public abstract class Skill : ScriptableObject
     }
 
 
-    public void SetCaster(Character character)
+    public Skill SetCaster(Character character)
     {
         caster = character;
+        return this;
     }
 
     /// <summary>

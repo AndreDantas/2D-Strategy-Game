@@ -9,6 +9,7 @@ namespace ModelTests
 {
     public class LineSkillTest
     {
+
         private GameMap map_5x5 = new GameMap(5, 5);
 
         [Test]

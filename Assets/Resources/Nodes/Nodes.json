@@ -1,0 +1,34 @@
+{
+    "nodes": [
+        {
+            "terrainType": "Meadow",
+            "blocked": false,
+            "walkCost": 1
+        },
+        {
+            "terrainType": "Road",
+            "blocked": false,
+            "walkCost": 0.5
+        },
+        {
+            "terrainType": "Forest",
+            "blocked": false,
+            "walkCost": 2
+        },
+        {
+            "terrainType": "Mountains",
+            "blocked": false,
+            "walkCost": 3
+        },
+        {
+            "terrainType": "Sea",
+            "blocked": true,
+            "walkCost": 1
+        },
+        {
+            "terrainType": "Shore",
+            "blocked": false,
+            "walkCost": 1.5
+        }
+    ]
+}

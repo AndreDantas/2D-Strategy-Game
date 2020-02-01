@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UtilityLibrary;
@@ -21,15 +20,15 @@ namespace Pathfinding
         /// <returns></returns>
         public static List<Position> FindRange(
             Position start,
-            int maxRange,
+            float maxRange,
             Func<Position, bool> validPosition,
-            Func<Position, int> getPositionCost,
+            Func<Position, float> getPositionCost,
             Func<Position, List<Position>> getNeighbors)
         {
 
             maxRange = Mathf.Max(maxRange, 0);
             var result = new List<Position>();
-            var distDict = new Dictionary<Position, int>();
+            var distDict = new Dictionary<Position, float>();
             var open = new Queue<Position>();
 
             open.Enqueue(start);
